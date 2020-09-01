@@ -1,0 +1,31 @@
+
+
+.dialogs_wrap
+{
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  height: 100%;
+  grid-gap: 20px;
+}
+
+.dialogs_list
+{
+  padding: 15px 0;
+  background: #fafafa;
+  border-right: solid 1px #eee;
+}
+
+.dialog
+{
+  padding: 10px 20px;
+}
+
+.messages_list
+{
+  padding: 20px;
+}
+
+.message
+{
+  padding: 20px 0;
+}

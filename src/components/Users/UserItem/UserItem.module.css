@@ -1,0 +1,23 @@
+
+.dialog
+{
+}
+
+.dialog a
+{
+  color: #333333;
+  text-decoration: none;
+  display: block;
+  padding: 10px 20px;
+}
+
+.dialog a:hover
+{
+  background: #eee;
+}
+
+.active
+{
+  background: #eee;
+  font-weight: bold;
+}

@@ -1,0 +1,15 @@
+import React from "react";
+
+function Sidebar() {
+    return(
+        <div className='sidebar'>
+            <nav>
+                <div>
+
+                </div>
+            </nav>
+        </div>
+    )
+}
+
+export default Sidebar
