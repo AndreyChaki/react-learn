@@ -1,5 +1,4 @@
 import {profileAPI} from "../api/api";
-import {stopSubmit} from "redux-form";
 
 
 const ADD_POST = 'profile/ADD_POST'
@@ -82,9 +81,9 @@ export const saveData = (data) => async (dispatch, getState) => {
   if (response.data.resultCode === 0) {
     dispatch(getProfile(uId))
   } else {
-    let key = response.data.messages[0].match(/Contacts->(\w+)/)[1].toLowerCase();
-    dispatch(stopSubmit('settingsForm', {
-      contacts: {[key]: response.data.messages[0]},
-    }));
+    //let key = response.data.messages[0].match(/Contacts->(\w+)/)[1].toLowerCase();
+    //dispatch(stopSubmit('settingsForm', {
+    //  contacts: {[key]: response.data.messages[0]},
+    //}));
   }
 }

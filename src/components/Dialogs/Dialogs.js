@@ -2,9 +2,9 @@ import React from "react";
 import s from './Dialogs.module.css'
 import DialogItem from "./DialogItem/DialogItem";
 import MessageItem from "./MessageItem/MessageItem";
-import {Field, reduxForm} from "redux-form";
+import {Field, Form} from 'react-final-form'
 import {Textarea} from "../common/FormsControls/FormsControls";
-import {maxLengthCreator, required} from "../../utils/validators/validators";
+import {required} from "../../utils/validators/validators";
 
 
 const Dialogs = props => {
@@ -19,6 +19,7 @@ const Dialogs = props => {
     props.addMessage(formData.body);
   }
 
+
   return (
     <div className={s.dialogs_wrap}>
       <div>
@@ -31,7 +32,16 @@ const Dialogs = props => {
           {messagesElements}
 
           <div className={s.submit_message}>
-            <TextareaReduxForm onSubmit={onSubmit}/>
+
+            <Form onSubmit={onSubmit}>
+              {({handleSubmit}) => (
+                <form onSubmit={handleSubmit}>
+                  <Field name={'body'} component={Textarea} validate={required}/>
+                  <button>Опубликовать</button>
+                </form>
+              )}
+            </Form>
+
           </div>
         </div>
       </div>
@@ -39,17 +49,5 @@ const Dialogs = props => {
   )
 };
 
-const maxLength100 = maxLengthCreator(100)
-
-function TextareaForm(props) {
-  return (
-    <form onSubmit={props.handleSubmit}>
-      <Field name={'body'} component={Textarea} validate={[required, maxLength100]}/>
-      <button>Опубликовать</button>
-    </form>
-  )
-}
-
-const TextareaReduxForm = reduxForm({form: `dialogsForm`})(TextareaForm)
 
 export default Dialogs

@@ -7,7 +7,7 @@ function Sidebar() {
     <div className='sidebar'>
       <nav className={s.menu}>
         <div className={s.item}>
-          <NavLink to='/' activeClassName={s.active}>Моя страница</NavLink>
+          <NavLink to='/'>Моя страница</NavLink>
         </div>
         <div className={s.item}>
           <NavLink to='/dialogs' activeClassName={s.active}>Сообщения</NavLink>

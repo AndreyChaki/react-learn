@@ -1,6 +1,6 @@
 import React from "react";
 import s from './Settings.module.css'
-import {Field, reduxForm} from "redux-form";
+import {Field, Form} from 'react-final-form'
 import {Input} from "../common/FormsControls/FormsControls";
 import Preloader from "../common/Preloader/Preloader";
 import {required} from "../../utils/validators/validators";
@@ -20,62 +20,65 @@ function Settings(props) {
   return (
     <div className="page_block p20">
       <h1>Настройки</h1>
-      <SettingsReduxForm {...props} initialValues={props.profile} onSubmit={onSubmit}/>
+      <SettingsForm {...props} initialValues={props.profile} onSubmit={onSubmit}/>
     </div>
   )
 }
 
-function SettingsForm({handleSubmit, error}) {
-
+function SettingsForm({handleSubmit, error, onSubmit, initialValues}) {
   return (
-    <form onSubmit={handleSubmit}>
+    <Form onSubmit={onSubmit} initialValues={initialValues}>
+      {({handleSubmit}) => (
 
-      <div className={s.form_block}>
+        <form onSubmit={handleSubmit}>
 
-        <label>
-          <div>Имя</div>
-          <Field name={'fullName'} component={Input} type='text' validate={[required]}/>
-        </label>
+          <div className={s.form_block}>
 
-        <label>
-          <div>Обо мне</div>
-          <Field name={'aboutMe'} component={Input} type='text' validate={[required]}/>
-        </label>
+            <label>
+              <div>Имя</div>
+              <Field name={'fullName'} component={Input} type='text' validate={required}/>
+            </label>
 
-        <div>
-          <div>Ищу работу?</div>
-          <Field name={'lookingForAJob'} component={Input} type='checkbox'/>
-        </div>
+            <label>
+              <div>Обо мне</div>
+              <Field name={'aboutMe'} component={Input} type='text' validate={required}/>
+            </label>
 
-        <label>
-          <div>Описание нужной работы</div>
-          <Field name={'lookingForAJobDescription'} type='text' component={Input}/>
-        </label>
+            <div>
+              <div>Ищу работу?</div>
+              <Field name={'lookingForAJob'} component={Input} type='checkbox'/>
+            </div>
 
-        <h2>Контакты</h2>
+            <label>
+              <div>Описание нужной работы</div>
+              <Field name={'lookingForAJobDescription'} type='text' component={Input}/>
+            </label>
 
-        <Field name={'contacts.github'} type='text' component={Input}/>
-        <Field name={'contacts.vk'} type='text' component={Input}/>
-        <Field name={'contacts.facebook'} type='text' component={Input}/>
-        <Field name={'contacts.instagram'} type='text' component={Input}/>
-        <Field name={'contacts.twitter'} type='text' component={Input}/>
-        <Field name={'contacts.website'} type='text' component={Input}/>
-        <Field name={'contacts.youtube'} type='text' component={Input}/>
-        <Field name={'contacts.mainLink'} type='text' component={Input}/>
+            <h2>Контакты</h2>
+
+            <Field name={'contacts.github'} type='text' component={Input}/>
+            <Field name={'contacts.vk'} type='text' component={Input}/>
+            <Field name={'contacts.facebook'} type='text' component={Input}/>
+            <Field name={'contacts.instagram'} type='text' component={Input}/>
+            <Field name={'contacts.twitter'} type='text' component={Input}/>
+            <Field name={'contacts.website'} type='text' component={Input}/>
+            <Field name={'contacts.youtube'} type='text' component={Input}/>
+            <Field name={'contacts.mainLink'} type='text' component={Input}/>
 
 
-      </div>
+          </div>
 
-      {error && <div className={s.form_error}>
-        {error}
-      </div>}
+          {error && <div className={s.form_error}>
+            {error}
+          </div>}
 
-      <button>Сохранить</button>
-    </form>
+          <button>Сохранить</button>
+        </form>
+
+      )}
+    </Form>
   )
 }
-
-const SettingsReduxForm = reduxForm({form: `settingsForm`})(SettingsForm)
 
 
 export default Settings
