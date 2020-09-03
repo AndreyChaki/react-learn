@@ -1,28 +1,53 @@
 import React from "react";
-import MyInfo from "./MyInfo/MyInfo";
-import s from "./Profile.module.css"
-import MyPostsContainer from "./MyPosts/MyPostsContainer";
+import Profile from "./Profile";
+import {connect} from "react-redux";
+import {getProfile, getStatus, updatePhoto, updateStatus} from "../../redux/profile-reducer";
+import {withRouter} from "react-router-dom";
+import {compose} from "redux";
 
-function Profile(props) {
-  return (
-    <div className={s.profile_wrap}>
-      <div>
-        <div className="page_block p20">
-          <div className={s.profile_img}>
-            <img src="https://sun9-20.userapi.com/impf/c9837/u8069529/113006632/z_d6333bac.jpg?size=200x0&quality=90&crop=0,0,682,1024&sign=8ed0e943a27206cf82a8c5211435ae22&ava=1" alt=""/>
-          </div>
-        </div>
-      </div>
-      <div>
-        <div className="page_block p20">
-          <MyInfo />
-        </div>
-        <div className="page_block p20">
-          <MyPostsContainer />
-        </div>
-      </div>
-    </div>
-  )
+class ProfileContainer extends React.Component {
+
+  componentDidMount() {
+    let userId = this.props.match.params.userId
+    if (!userId) {
+      userId = this.props.autorizedUserId
+      if (!userId) {
+        this.props.history.push("/login");
+      }
+    }
+    this.props.getProfile(userId)
+    this.props.getStatus(userId)
+  }
+
+  render() {
+    return (
+      <Profile {...this.props}
+               isOwner={!this.props.match.params.userId}
+               updatePhoto={this.props.updatePhoto}
+               profile={this.props.profile}
+               status={this.props.status}
+               updateStatus={this.props.updateStatus}
+      />
+    )
+  }
 }
 
-export default Profile
+let mapStateToProps = (state) => ({
+  profile: state.profilePage.profile,
+  status: state.profilePage.status,
+  autorizedUserId: state.auth.userId,
+  isAuth: state.auth.isAuth
+})
+
+let mapDispatchToProps = {
+  getProfile,
+  getStatus,
+  updateStatus,
+  updatePhoto
+}
+
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  withRouter,
+  //withAuthRedirect
+)(ProfileContainer)

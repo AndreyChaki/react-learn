@@ -1,20 +1,29 @@
 import React from "react";
-import s from './UserInfo.module.css'
+import s from './UserPhoto.module.css'
 import Preloader from "../../common/Preloader/Preloader";
+import userPhoto from '../../../images/user-default.png'
 
-function UserInfo(props) {
+function UserPhoto(props) {
 
-  if(!props.profile) {
-    return <Preloader />
+  if (!props.profile) {
+    return <Preloader/>
+  }
+
+  const onMainPhotoSelected = (e) => {
+    if (e.target.files.length) {
+      props.updatePhoto(e.target.files[0])
+    }
   }
 
   return (
-    <div className={s.about}>
-      <div>{props.profile.fullName}</div>
-      <div>{props.profile.aboutMe}</div>
-
+    <div className={s.profile_img}>
+      <img src={props.profile.photos.large || userPhoto} alt=""/>
+      {props.isOwner && <div>
+        <input type="file" onChange={onMainPhotoSelected}/>
+      </div>
+      }
     </div>
   )
 }
 
-export default UserInfo
+export default UserPhoto

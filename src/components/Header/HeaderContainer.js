@@ -1,18 +1,28 @@
 import React from "react";
-import s from './Header.module.css'
-import {NavLink} from "react-router-dom";
+import Header from "./Header";
+import {connect} from "react-redux";
+import {logout} from "../../redux/auth-reducer";
+import {compose} from "redux";
 
-function Header() {
-  return (
-    <header className='header'>
-      <div className={s.header_content}>
-        <div className={s.logo} />
-        <div className={s.login_block}>
-          <NavLink to={'/login'}>Log in</NavLink>
-        </div>
-      </div>
-    </header>
-  )
+class HeaderContainer extends React.Component {
+
+
+  render() {
+    return (
+      <Header {...this.props} />
+    )
+  }
 }
 
-export default Header
+let mapStateToProps = (state) => ({
+  isAuth: state.auth.isAuth,
+  login: state.auth.login
+})
+
+let mapDispatchToProps = {
+  logout
+}
+
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps)
+)(HeaderContainer)

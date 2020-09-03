@@ -1,31 +1,19 @@
 
-
-.dialogs_wrap
-{
-  display: grid;
-  grid-template-columns: 200px 1fr;
-  height: 100%;
-  grid-gap: 20px;
+.dialog {
 }
 
-.dialogs_list
-{
-  padding: 15px 0;
-  background: #fafafa;
-  border-right: solid 1px #eee;
+.dialog a {
+    color: #333333;
+    text-decoration: none;
+    display: block;
+    padding: 10px 20px;
 }
 
-.dialog
-{
-  padding: 10px 20px;
+.dialog a:hover {
+    background: #eee;
 }
 
-.messages_list
-{
-  padding: 20px;
-}
-
-.message
-{
-  padding: 20px 0;
+.active {
+    background: #eee;
+    font-weight: bold;
 }

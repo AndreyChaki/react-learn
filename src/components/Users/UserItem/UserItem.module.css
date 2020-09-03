@@ -1,23 +1,17 @@
 
-.dialog
-{
+.urer_item {
+    display: grid;
+    grid-template-columns: 100px 1fr 200px;
+    grid-gap: 20px;
+    padding: 20px 0;
+    border-bottom: solid 1px #ccc;
 }
 
-.dialog a
-{
-  color: #333333;
-  text-decoration: none;
-  display: block;
-  padding: 10px 20px;
+.user_photo img {
+    display: block;
+    width: 100%;
 }
 
-.dialog a:hover
-{
-  background: #eee;
-}
-
-.active
-{
-  background: #eee;
-  font-weight: bold;
+.user_follow_button {
+    margin-top: 20px;
 }

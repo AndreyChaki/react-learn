@@ -1,19 +1,15 @@
 
-.menu
-{
-  margin-top: 20px;
+.login_wrap {
+    max-width: 300px;
 }
 
-.item a
-{
-  color: #333333;
-  text-decoration: none;
-  display: block;
-  padding: 10px 20px;
+.login_wrap form div + div {
+    margin-top: 10px;
 }
 
-.item a.active,
-.item a:hover
-{
-  background: #dce1e6;
+.form_error {
+    background: red;
+    color: #fff;
+    padding: 5px 10px;
+    font-weight: bold;
 }

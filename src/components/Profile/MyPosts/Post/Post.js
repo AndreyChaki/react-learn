@@ -1,12 +1,12 @@
 import React from "react";
-import s from './MyPosts.module.css'
+import s from './Post.module.css'
 
-function MyPosts() {
+function Post(props) {
   return (
-    <div className='content'>
-
+    <div className={s.item}>
+      {props.message}
     </div>
   )
 }
 
-export default MyPosts
+export default Post

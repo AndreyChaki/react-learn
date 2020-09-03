@@ -1,0 +1,22 @@
+
+.pag {
+    display: flex;
+    margin: 20px 0;
+}
+
+.pag div {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #eee;
+    margin-right: 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.pag div.active {
+    font-weight: bold;
+    cursor: default;
+}

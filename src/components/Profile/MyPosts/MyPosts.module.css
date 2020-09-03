@@ -1,10 +1,9 @@
 
-.menu
-{
-  margin: 20px;
+.submit_post_title {
+    font-size: 20px;
+    font-weight: bold;
 }
 
-.item
-{
-  color: red;
+.submit_post_form {
+    margin: 20px 0;
 }
