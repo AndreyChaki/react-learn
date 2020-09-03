@@ -44,7 +44,7 @@ class App extends React.Component {
             <Route path='/users' render={() => <UsersContainer/>}/>
             <Route path='/login' render={() => <LoginContainer/>}/>
             <Route path='/Settings' render={() => <SettingsContainer/>}/>
-            <Route path='*' render={() => <div>404</div>}/>
+            <Route path='*' render={() => <div className="page_block p20"><h1>404</h1></div>}/>
           </Switch>
         </div>
       </div>
